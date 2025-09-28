@@ -9,7 +9,7 @@ const {
 const createBakery = (bakery) => {
   const bakeryList = getAllBakeriesFromService();
   currentMaxId =
-    bakeryListList.length > 0 ? Math.max(...bakeryList.map((bakery) => bakery.id)) : 0;
+    bakeryList.length > 0 ? Math.max(...bakeryList.map((bakery) => bakery.id)) : 0;
   nextId = currentMaxId + 1;
   const newBakery = { ...bakery, id: nextId };
   addBakery(newBakery);

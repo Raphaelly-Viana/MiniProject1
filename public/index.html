@@ -33,18 +33,18 @@
             />
             <label class="form-check-label">Is completed</label>
           </div>
-          <button id="bakeryDel" class="btn btn-danger">Del</button>
-          <button id="bakeryUpdate" class="btn btn-primary">Update</button>
+          <button id="toDoDel" class="btn btn-danger">Del</button>
+          <button id="toDoUpdate" class="btn btn-primary">Update</button>
         </div>
       </div>
     </template>
     <div class="container">
-      <img src="./assets/logo.png" width="40px" />
+      <img src="./assets/logo.png" width="200px"/>
       <h1>JA BAKERY</h1>
-    
+    <h2> MENU </h2>
       <form onsubmit="bakerySubmit(event)">
         <div class="mb-3">
-          <label for="bakeryTitle" class="form-label">MENU</label>
+          <label for="bakeryTitle" class="form-label"></label>
           <input type="text" class="form-control" id="bakeryTitle" />
         </div>
         <div class="mb-3">
@@ -53,34 +53,40 @@
             Pastries:    
             </h2>
             <h3>
-            Cookies                                $7
-            Macarons                               $10
-            Croissants(Butter, Almond, Chocolate)  $8
+              <ul>
+            <li>Cookies                                $7</li>
+            <li>Macarons                               $10</li>
+            <li>Croissants(Butter, Almond, Chocolate)  $8</li>
+            </ul>
             </h3>
             <h2>
             Cakes:
-            </h2>
+              </h2>
               <h3>
-                Chocolate Cake                       $12
-                Carrot Cake                          $14
-                Red Velvet Cake                      $13
+                <ul>
+                <li>Chocolate Cake                       $12</li>
+                <li>Carrot Cake                          $14</li>
+                <li>Red Velvet Cake                      $13</li>
+                </ul>
               </h3>
 
-            <h2>
-            Drinks:
-            </h2>
+              <h2>
+                Drinks:
+              </h2>
 
               <h3>
-                Iced Coffee                             $8
-                Milk Shake                              $12
-                Hot Chocolate                           $9
+                <ul>
+                <li>Iced Coffee                             $8</li>
+                <li>Milk Shake                              $12</li>
+                <li>Hot Chocolate                           $9</li>
+                </ul>
               </h3>
 
           
           </label>
           <input type="text" class="form-control" id="bakeryDesc" />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Order Online</button>
       </form>
       <div class="row" id="bakeryContainer"></div>
       <div
@@ -128,7 +134,7 @@
     <script>
       let bakeries = [];
 
-      function displaybakery({ id, title, desc, isCompleted }, index) {
+      function displayBakery({ id, title, desc, isCompleted }, index) {
         const copiedTemplate = document
           .getElementById("bakeryTemplate")
           .content.cloneNode(true);
@@ -216,7 +222,7 @@
 
       async function getInitData() {
         const response = await fetch("/api/bakeries");
-        const bakery = await response.json();
+        const bakeryList = await response.json();
         return bakeryList;
       }
 
@@ -226,9 +232,10 @@
         renderBakeries();
       }
 
-      displayInitBakeries();
+      displayInitBakeries(); 
       const myModal = new bootstrap.Modal(
         document.getElementById("exampleModal")
+        
       );
 
       myModal.show();
